@@ -10,6 +10,8 @@ public class MovieListTest {
     private Movie movie1;
     private Movie movie2;
     private Movie movie3;
+    private Movie movie4;
+    private Movie movie5;
 
     @BeforeEach
     public void setup() {
@@ -19,7 +21,9 @@ public class MovieListTest {
                     4.5, 120);
         movie2 = new Movie("The Hunger Games", "amazing!", "action", 2011,
                     5, 112);
-        movie3 = new Movie("Black Panther", "awesome", "action", 2018, 4.9, 112);
+        movie3 = new Movie("Black Panther", "awesome", "action", 2018, 5, 112);
+        movie4 = new Movie("Little Women", "great", "coming of age", 2019, 5, 90);
+        movie5 = new Movie("Catching Fire", "wow", "action", 2013, 4.8, 100);
     }
 
     @Test
@@ -42,6 +46,16 @@ public class MovieListTest {
         list1.addMovie(movie2);
         list1.addMovie(movie3);
         assertEquals("The Hunger Games", list1.getHighestRatedTitle());
+    }
+
+    @Test
+    public void testGetHighestRatedTitleTied() {
+        list1.addMovie(movie1);
+        list1.addMovie(movie2);
+        list1.addMovie(movie3);
+        list1.addMovie(movie4);
+        list1.addMovie(movie5);
+        assertEquals("Little Women", list1.getHighestRatedTitle());
     }
 
     @Test
@@ -69,6 +83,16 @@ public class MovieListTest {
         list1.addMovie(movie1);
         list1.addMovie(movie2);
         list1.addMovie(movie3);
+        assertEquals("action", list1.getMostWatchedGenre());
+    }
+
+    @Test
+    public void testGetMostWatchedGenreTied() {
+        list1.addMovie(movie1);
+        list1.addMovie(movie2);
+        list1.addMovie(movie3);
+        list1.addMovie(movie5);
+        list1.addMovie(movie4);
         assertEquals("action", list1.getMostWatchedGenre());
     }
 }

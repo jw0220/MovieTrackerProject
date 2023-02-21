@@ -15,18 +15,21 @@ public class MovieList {
         this.movies.add(movie);
     }
 
-    //EFFECTS: get the highest rated title out of the list
+    //EFFECTS: get the highest rated title out of the list if tie get the most recent or
+    //        if the tied with another movie, get the most recent one out of the tied movies
     public String getHighestRatedTitle() {
+        int recent = movies.size() - 1;
+        String highest = movies.get(recent).getTitle();
         for (int i = 0; i < movies.size(); i++) {
             for (int j = i + 1; j < movies.size(); j++) {
-                if (movies.get(i).getRating() > movies.get(j).getRating()) {
-                    return movies.get(i).getTitle();
+                if (movies.get(i).getRating() >= movies.get(j).getRating()) {
+                    highest = movies.get(i).getTitle();
                 } else {
-                    return movies.get(j).getTitle();
+                    highest = movies.get(j).getTitle();
                 }
             }
         }
-        return "";
+        return highest;
     }
 
     //EFFECTS: get the total minutes watched of all the movies in the list
@@ -47,9 +50,11 @@ public class MovieList {
         return totalRating / this.movies.size();
     }
 
-    //EFFECTS: get the most watched genre of the movies in the list.
+    //EFFECTS: get the most watched genre of the movies in the list or
+    //         if tie get the most recent movie genre
     public String getMostWatchedGenre() {
-        String most = movies.get(0).getGenre();
+        int recent = movies.size() - 1;
+        String most = movies.get(recent).getGenre();
         int count = 0;
         for (int i = 0; i < movies.size(); i++) {
             int cnt = 0;
