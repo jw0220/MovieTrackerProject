@@ -56,7 +56,7 @@ public class Movie {
     //EFFECTS: set the rating of the movie from 1 to 5
     //         - 1 being the lowest rating
     //         - 5 being the highest rating
-    public void setRating(int r) {
+    public void setRating(double r) {
         rating = r;
     }
 
