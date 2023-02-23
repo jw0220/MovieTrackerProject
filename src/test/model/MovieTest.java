@@ -3,7 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MovieTest {
     private Movie movie1;
@@ -33,8 +33,15 @@ class MovieTest {
         assertEquals(5, movie2.getRating());
         assertEquals(112, movie2.getMinutes());
     }
+
+    @Test
+    public void testToString() {
+        assertEquals("Movie title: Harry Potter" +
+                "\n Year: 2003" +
+                "\n Genre: fantasy" +
+                "\n Total Minutes: 120" +
+                "\n My Rating: 4.5" +
+                "\n My Review: very good",
+                movie1.toString());
+    }
 }
-
-    //@Test
-    //public void testToString() {
-

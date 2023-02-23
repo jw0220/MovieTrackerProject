@@ -3,7 +3,6 @@ package ui;
 import model.Movie;
 import model.MovieList;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MovieTrackerApp {
@@ -13,43 +12,18 @@ public class MovieTrackerApp {
 
     //EFFECTS: runs the movie tracker application
     public MovieTrackerApp() {
-        runMovieTracker();
+        init();
+        runTracker();
     }
 
     //EFFECTS: process user input
-    private void runMovieTracker() {
+    private void runTracker() {
         boolean keepGoing = true;
         String command = null;
 
-        init();
+        myMovieJournal();
 
         while (keepGoing) {
-            System.out.println("Enter movie title: ");
-            movie.setTitle(input.next());
-            //String title = input.next();
-
-            System.out.println("Enter movie year: ");
-            movie.setYear(input.nextInt());
-            // int year = input.nextInt();
-
-            System.out.println("Enter movie genre: ");
-            movie.setGenre(input.next());
-            // String genre = input.next();
-
-            System.out.println("Enter the length of the movie in minutes: ");
-            movie.setMinutes(input.nextInt());
-            // int minutes = input.nextInt();
-
-            System.out.println("My rating for the movie from 1 to 5: ");
-            movie.setRating(input.nextDouble());
-            //int rating = input.nextInt();
-
-            System.out.println("My review of my movie:");
-            movie.setReview(input.nextLine());
-            // String review = input.nextLine();
-
-            System.out.println(movie.toString());
-
             displayMenu();
             command = input.next();
             command = command.toUpperCase();
@@ -63,21 +37,56 @@ public class MovieTrackerApp {
         System.out.println("\nSee you next time!");
     }
 
+    //EFFECTS: user inputs movie information
+    private void myMovieJournal() {
+        input = new Scanner(System.in);
+
+        System.out.println("Enter movie title: ");
+        movie.setTitle(input.nextLine());
+        String title = movie.getTitle();
+
+        System.out.println("Enter movie year: ");
+        movie.setYear(input.nextInt());
+        int year = movie.getYear();
+
+        System.out.println("Enter movie genre: ");
+        movie.setGenre(input.next());
+        String genre = movie.getGenre();
+
+        System.out.println("Enter the length of the movie in minutes: ");
+        movie.setMinutes(input.nextInt());
+        int minutes = movie.getMinutes();
+
+        System.out.println("My review of the movie: ");
+        input.nextLine();
+        movie.setReview(input.nextLine());
+        String review = movie.getReview();
+
+        System.out.println("My rating for the movie from 1 to 5: ");
+        movie.setRating(input.nextDouble());
+        double rating = movie.getRating();
+
+        myMovieList.addMovie(new Movie(title, review, genre, year, rating, minutes));
+
+        System.out.println(movie.toString());
+    }
+
     //EFFECTS: initializes console
     private void init() {
         input = new Scanner(System.in);
         myMovieList = new MovieList();
         movie = new Movie(null, null, null, 0, 0, 0);
-        // input.useDelimiter("\n");
+        input.useDelimiter("\n");
     }
 
     //EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("\nPress A to see my average rating");
-        System.out.println("\nPress G to see my most watched genre");
-        System.out.println("\nPress H to see my highest rates title");
-        System.out.println("\nPress M to see my total minutes watched");
-        System.out.println("\nPress Q to exit out of application");
+        System.out.println("\nEnter Y to add more movies");
+        System.out.println("\nEnter A to see my average rating");
+        System.out.println("\nEnter G to see my most watched genre");
+        System.out.println("\nEnter H to see my highest rates title");
+        System.out.println("\nEnter M to see my total minutes watched");
+        System.out.println("\nEnter Q to exit out of application");
     }
 
     //MODIFIES: this
@@ -85,6 +94,8 @@ public class MovieTrackerApp {
     private void processCommand(String command) {
         if (command.equals("A")) {
             seeAverageRating();
+        } else if (command.equals("Y")) {
+            runTracker();
         } else if (command.equals("G")) {
             seeMostWatchedGenre();
         } else if (command.equals("H")) {
