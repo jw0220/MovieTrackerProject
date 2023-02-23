@@ -44,4 +44,40 @@ class MovieTest {
                 "\n My Review: very good",
                 movie1.toString());
     }
+
+    @Test
+    public void testSetTitle() {
+        movie1.setTitle("Lady Bird");
+        assertEquals("Lady Bird", movie1.getTitle());
+    }
+
+    @Test
+    public void testSetReview() {
+        movie1.setReview("terrible");
+        assertEquals("terrible", movie1.getReview());
+    }
+
+    @Test
+    public void testSetGenre() {
+        movie1.setGenre("action");
+        assertEquals("action", movie1.getGenre());
+    }
+
+    @Test
+    public void testSetRating() {
+        movie1.setRating(2);
+        assertEquals(2, movie1.getRating());
+    }
+
+    @Test
+    public void testSetYear() {
+        movie1.setYear(2011);
+        assertEquals(2011, movie1.getYear());
+    }
+
+    @Test
+    public void testSetMinutes() {
+        movie1.setMinutes(90);
+        assertEquals(90, movie1.getMinutes());
+    }
 }
