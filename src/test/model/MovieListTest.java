@@ -49,7 +49,7 @@ public class MovieListTest {
         list1.addMovie(movie1);
         list1.addMovie(movie2);
         list1.addMovie(movie3);
-        assertEquals("The Hunger Games", list1.getHighestRatedTitle());
+        assertEquals("Black Panther", list1.getHighestRatedTitle());
     }
 
     @Test
@@ -80,24 +80,6 @@ public class MovieListTest {
         list1.addMovie(movie1);
         list1.addMovie(movie2);
         assertEquals(4.75, list1.getAverageRating());
-    }
-
-    @Test
-    public void testGetMostWatchedGenre() {
-        list1.addMovie(movie1);
-        list1.addMovie(movie2);
-        list1.addMovie(movie3);
-        assertEquals("action", list1.getMostWatchedGenre());
-    }
-
-    @Test
-    public void testGetMostWatchedGenreTied() {
-        list1.addMovie(movie1);
-        list1.addMovie(movie2);
-        list1.addMovie(movie3);
-        list1.addMovie(movie5);
-        list1.addMovie(movie4);
-        assertEquals("action", list1.getMostWatchedGenre());
     }
 
     @Test

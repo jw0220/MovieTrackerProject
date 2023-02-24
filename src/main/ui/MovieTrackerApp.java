@@ -53,7 +53,8 @@ public class MovieTrackerApp {
         int year = movie.getYear();
 
         System.out.println("Enter movie genre: ");
-        movie.setGenre(input.next());
+        input.nextLine();
+        movie.setGenre(input.nextLine());
         String genre = movie.getGenre();
 
         System.out.println("Enter the length of the movie in minutes: ");
@@ -85,7 +86,6 @@ public class MovieTrackerApp {
     private void displayMenu() {
         System.out.println("\nEnter Y to add more movies");
         System.out.println("\nEnter A to see my average rating");
-        System.out.println("\nEnter G to see my most watched genre");
         System.out.println("\nEnter H to see my highest rates title");
         System.out.println("\nEnter M to see my total minutes watched");
         System.out.println("\nEnter V to view all the movies I have watched");
@@ -99,8 +99,6 @@ public class MovieTrackerApp {
             seeAverageRating();
         } else if (command.equals("Y")) {
             myMovieJournal();
-        } else if (command.equals("G")) {
-            seeMostWatchedGenre();
         } else if (command.equals("H")) {
             seeHighestRatedTitle();
         } else if (command.equals("M")) {
@@ -116,12 +114,6 @@ public class MovieTrackerApp {
     private void seeAverageRating() {
         double averageRating = myMovieList.getAverageRating();
         System.out.println(averageRating);
-    }
-
-    //EFFECTS: print the most watched genre of all the movies in the list
-    private void seeMostWatchedGenre() {
-        String genre = myMovieList.getMostWatchedGenre();
-        System.out.println(genre);
     }
 
     //EFFECTS: print the highest rated title in the movie list

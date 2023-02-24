@@ -24,7 +24,7 @@ public class Movie {
     }
 
     //MODIFIES: this
-    //EFFECTS: set the movie title as t
+    //EFFECTS: set the title for the movie
     public void setTitle(String t) {
         title = t;
     }

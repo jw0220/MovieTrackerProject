@@ -1,7 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MovieList {
     private ArrayList<Movie> movies;
@@ -17,14 +19,14 @@ public class MovieList {
         this.movies.add(movie);
     }
 
-    //EFFECTS: get the highest rated title out of the list if tie get the most recent or
-    //        if the tied with another movie, get the most recent one out of the tied movies
+    //EFFECTS: get the highest rated title out of the list. If there is a tie for the highest rated title then
+    //         get the most recent title of all the tied titles.
     public String getHighestRatedTitle() {
         int recent = movies.size() - 1;
         String highest = movies.get(recent).getTitle();
         for (int i = 0; i < movies.size(); i++) {
             for (int j = i + 1; j < movies.size(); j++) {
-                if (movies.get(i).getRating() >= movies.get(j).getRating()) {
+                if (movies.get(i).getRating() > movies.get(j).getRating()) {
                     highest = movies.get(i).getTitle();
                 } else {
                     highest = movies.get(j).getTitle();
@@ -52,29 +54,8 @@ public class MovieList {
         return totalRating / this.movies.size();
     }
 
-    //EFFECTS: get the most watched genre of the movies in the list or
-    //         if tie get the most recent movie genre out of the tied genres
-    public String getMostWatchedGenre() {
-        int recent = movies.size() - 1;
-        String most = movies.get(recent).getGenre();
-        int count = 0;
-        for (int i = 0; i < movies.size(); i++) {
-            int cnt = 0;
-            for (int j = i + 1; j < movies.size(); j++) {
-                if (movies.get(i).getGenre() == movies.get(j).getGenre()) {
-                    cnt++;
-                }
-                if (count < cnt) {
-                    most = movies.get(i).getGenre();
-                    count = cnt;
-                }
-            }
-        }
-        return most;
-    }
-
-    //EFFECTS: puts all the movies added to the movie list in string representation and add it to another list so the
-    //         user can view all the movies they have watched
+    //EFFECTS: puts all the movies added to the movie list in string representation and return
+    //         a list with all the movies in string representation.
     public List<String> viewMoviesInMovieList() {
         ArrayList<String> viewList = new ArrayList<>();
         for (int i = 0; i < movies.size(); i++) {
