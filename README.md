@@ -27,6 +27,6 @@ that can give you some insight into your favourite titles, genre, and other stat
 and total minutes watched of all the movies and tv shows combined.
 
 **References**
-- ui package draws from TellerApp 
+- ui package inspired by TellerApp 
 
 
