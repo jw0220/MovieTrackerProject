@@ -26,4 +26,7 @@ that can give you some insight into your favourite titles, genre, and other stat
 - As a user, I want to be able to see statistics on my highest rated title, average rating, 
 and total minutes watched of all the movies and tv shows combined.
 
+**References**
+- ui package draws from TellerApp 
+
 
