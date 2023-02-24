@@ -2,6 +2,10 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MovieListTest {
@@ -94,5 +98,15 @@ public class MovieListTest {
         list1.addMovie(movie5);
         list1.addMovie(movie4);
         assertEquals("action", list1.getMostWatchedGenre());
+    }
+
+    @Test
+    public void testViewMoviesInMovieList() {
+        list1.addMovie(movie1);
+        list1.addMovie(movie2);
+        List<String> viewMovies = new ArrayList<>();
+        viewMovies.add(movie1.toString());
+        viewMovies.add(movie2.toString());
+        assertEquals(viewMovies, list1.viewMoviesInMovieList());
     }
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MovieList {
     private ArrayList<Movie> movies;
@@ -10,6 +11,7 @@ public class MovieList {
         this.movies = new ArrayList<>();
     }
 
+    //MODIFIES: this
     //EFFECTS: add movie to the movie list
     public void addMovie(Movie movie) {
         this.movies.add(movie);
@@ -51,7 +53,7 @@ public class MovieList {
     }
 
     //EFFECTS: get the most watched genre of the movies in the list or
-    //         if tie get the most recent movie genre
+    //         if tie get the most recent movie genre out of the tied genres
     public String getMostWatchedGenre() {
         int recent = movies.size() - 1;
         String most = movies.get(recent).getGenre();
@@ -69,6 +71,17 @@ public class MovieList {
             }
         }
         return most;
+    }
+
+    //EFFECTS: puts all the movies added to the movie list in string representation and add it to another list so the user
+    //         can view all the movies they have watched
+    public List<String> viewMoviesInMovieList() {
+        ArrayList<String> viewList = new ArrayList<>();
+        for (int i = 0; i < movies.size(); i++) {
+            String movie = movies.get(i).toString();
+            viewList.add(movie);
+        }
+        return viewList;
     }
 
     // EFFECTS: returns the numbers of movies currently in the list

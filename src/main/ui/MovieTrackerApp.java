@@ -3,6 +3,7 @@ package ui;
 import model.Movie;
 import model.MovieList;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MovieTrackerApp {
@@ -16,6 +17,7 @@ public class MovieTrackerApp {
         runTracker();
     }
 
+    //MODIFIES: this
     //EFFECTS: process user input
     private void runTracker() {
         boolean keepGoing = true;
@@ -28,15 +30,11 @@ public class MovieTrackerApp {
             command = input.next();
             command = command.toUpperCase();
 
-            if (command.equals("Q")) {
-                keepGoing = false;
-            } else {
-                processCommand(command);
-            }
+            processCommand(command);
         }
-        System.out.println("\nSee you next time!");
     }
 
+    //MODIFIES: this
     //EFFECTS: user inputs movie information
     private void myMovieJournal() {
         input = new Scanner(System.in);
@@ -67,10 +65,9 @@ public class MovieTrackerApp {
         double rating = movie.getRating();
 
         myMovieList.addMovie(new Movie(title, review, genre, year, rating, minutes));
-
-        System.out.println(movie.toString());
     }
 
+    //MODIFIES: this
     //EFFECTS: initializes console
     private void init() {
         input = new Scanner(System.in);
@@ -86,7 +83,7 @@ public class MovieTrackerApp {
         System.out.println("\nEnter G to see my most watched genre");
         System.out.println("\nEnter H to see my highest rates title");
         System.out.println("\nEnter M to see my total minutes watched");
-        System.out.println("\nEnter Q to exit out of application");
+        System.out.println("\nEnter V to view all the movies I have watched");
     }
 
     //MODIFIES: this
@@ -102,36 +99,40 @@ public class MovieTrackerApp {
             seeHighestRatedTitle();
         } else if (command.equals("M")) {
             seeMinutesWatched();
+        } else if (command.equals("V")) {
+            viewMovies();
         } else {
             System.out.println("Selection not valid...");
         }
     }
 
-    //MODIFIES: this
     //EFFECTS: print the average rating of all movies in the list
     private void seeAverageRating() {
         double averageRating = myMovieList.getAverageRating();
         System.out.println(averageRating);
     }
 
-    //MODIFIES: this
     //EFFECTS: print the most watched genre of all the movies in the list
     private void seeMostWatchedGenre() {
         String genre = myMovieList.getMostWatchedGenre();
         System.out.println(genre);
     }
 
-    //MODIFIES: this
     //EFFECTS: print the highest rated title in the movie list
     private void seeHighestRatedTitle() {
         String title = myMovieList.getHighestRatedTitle();
         System.out.println(title);
     }
 
-    //MODIFIES: this
     //EFFECTS: print the total minutes watched from all the movies in the list
     private void seeMinutesWatched() {
         int minutes = myMovieList.getTotalMinutesWatched();
         System.out.println(minutes);
+    }
+
+    //EFFECTS: prints out the list of movies entered by user in string representation
+    private void viewMovies() {
+        List movies = myMovieList.viewMoviesInMovieList();
+        System.out.println(movies);
     }
 }

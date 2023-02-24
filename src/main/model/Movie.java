@@ -23,6 +23,7 @@ public class Movie {
         return title;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the movie title as t
     public void setTitle(String t) {
         title = t;
@@ -33,6 +34,7 @@ public class Movie {
         return review;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the review for the movie
     public void setReview(String r) {
         review = r;
@@ -43,6 +45,7 @@ public class Movie {
         return genre;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the genre of the movie
     public void setGenre(String g) {
         genre = g;
@@ -53,6 +56,7 @@ public class Movie {
         return rating;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the rating of the movie from 1 to 5
     //         - 1 being the lowest rating
     //         - 5 being the highest rating
@@ -65,6 +69,7 @@ public class Movie {
         return year;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the year of the movie
     public void setYear(int y) {
         year = y;
@@ -75,6 +80,7 @@ public class Movie {
         return minutes;
     }
 
+    //MODIFIES: this
     //EFFECTS: set the total minutes of the movie
     public void setMinutes(int m) {
         minutes = m;
@@ -82,7 +88,8 @@ public class Movie {
 
     //EFFECTS: return a string representation of a movie
     public String toString() {
-        return "Movie title: " + title
+        return "\n"
+                + "\nMovie title: " + title
                + "\n Year: " + year
                + "\n Genre: " + genre
                + "\n Total Minutes: " + minutes

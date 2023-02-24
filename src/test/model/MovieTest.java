@@ -36,7 +36,8 @@ class MovieTest {
 
     @Test
     public void testToString() {
-        assertEquals("Movie title: Harry Potter" +
+        assertEquals( "\n" +
+                "\nMovie title: Harry Potter" +
                 "\n Year: 2003" +
                 "\n Genre: fantasy" +
                 "\n Total Minutes: 120" +
