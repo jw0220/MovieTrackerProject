@@ -30,8 +30,13 @@ public class MovieTrackerApp {
             command = input.next();
             command = command.toUpperCase();
 
-            processCommand(command);
+            if (command.equals("Q")) {
+                keepGoing = false;
+            } else {
+                processCommand(command);
+            }
         }
+        System.out.println("See ya!");
     }
 
     //MODIFIES: this
@@ -84,6 +89,7 @@ public class MovieTrackerApp {
         System.out.println("\nEnter H to see my highest rates title");
         System.out.println("\nEnter M to see my total minutes watched");
         System.out.println("\nEnter V to view all the movies I have watched");
+        System.out.println("\nEnter Q to leave application");
     }
 
     //MODIFIES: this
@@ -92,7 +98,7 @@ public class MovieTrackerApp {
         if (command.equals("A")) {
             seeAverageRating();
         } else if (command.equals("Y")) {
-            runTracker();
+            myMovieJournal();
         } else if (command.equals("G")) {
             seeMostWatchedGenre();
         } else if (command.equals("H")) {
@@ -132,7 +138,7 @@ public class MovieTrackerApp {
 
     //EFFECTS: prints out the list of movies entered by user in string representation
     private void viewMovies() {
-        List movies = myMovieList.viewMoviesInMovieList();
+        List<String> movies = myMovieList.viewMoviesInMovieList();
         System.out.println(movies);
     }
 }
