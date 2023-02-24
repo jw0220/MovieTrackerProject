@@ -73,8 +73,8 @@ public class MovieList {
         return most;
     }
 
-    //EFFECTS: puts all the movies added to the movie list in string representation and add it to another list so the user
-    //         can view all the movies they have watched
+    //EFFECTS: puts all the movies added to the movie list in string representation and add it to another list so the
+    //         user can view all the movies they have watched
     public List<String> viewMoviesInMovieList() {
         ArrayList<String> viewList = new ArrayList<>();
         for (int i = 0; i < movies.size(); i++) {
