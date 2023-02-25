@@ -1,9 +1,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class MovieList {
     private ArrayList<Movie> movies;
@@ -52,6 +50,28 @@ public class MovieList {
             totalRating = totalRating + m.getRating();
         }
         return totalRating / this.movies.size();
+    }
+
+    //EFFECTS: return the most watched genre of the movies in the list.
+    //         - If there is a tie between multiple genres, then return the genre that is in the list first out of the
+    //           ties genres
+    // *reference: code drawn from https://youtu.be/uINMn4FeHCM*
+    public String getMostWatchedGenre() {
+        String most = movies.get(0).getGenre();
+        int count = 0;
+        for (int i = 0; i < movies.size(); i++) {
+            int cnt = 0;
+            for (int j = i + 1; j < movies.size(); j++) {
+                if (movies.get(i).getGenre().equals(movies.get(j).getGenre())) {
+                    cnt++;
+                }
+                if (count < cnt) {
+                    most = movies.get(i).getGenre();
+                    count = cnt;
+                }
+            }
+        }
+        return most;
     }
 
     //EFFECTS: puts all the movies added to the movie list in string representation and return

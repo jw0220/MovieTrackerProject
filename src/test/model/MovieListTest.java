@@ -83,6 +83,22 @@ public class MovieListTest {
     }
 
     @Test
+    public void testGetMostWatchedGenre() {
+        list1.addMovie(movie1);
+        list1.addMovie(movie2);
+        list1.addMovie(movie3);
+        assertEquals("action", list1.getMostWatchedGenre());
+    }
+
+    @Test
+    public void testGetMostWatchedGenreTied() {
+        list1.addMovie(movie1);
+        list1.addMovie(movie2);
+        list1.addMovie(movie4);
+        assertEquals("fantasy", list1.getMostWatchedGenre());
+    }
+
+    @Test
     public void testViewMoviesInMovieList() {
         list1.addMovie(movie1);
         list1.addMovie(movie2);

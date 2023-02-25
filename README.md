@@ -23,7 +23,7 @@ that can give you some insight into your favourite titles, genre, and other stat
 - As a user, I want to be able to add a rating and review to a movie/tv show.
 - As a user, I want to add information like the genre and minutes of the movie/tv show.
 - As a user, I want to be able to view all the movies/tv shows I have watched.
-- As a user, I want to be able to see statistics on my highest rated title, average rating, 
+- As a user, I want to be able to see statistics on my highest rated title, average rating, most watched genre,
 and total minutes watched of all the movies and tv shows combined.
 
 **References**
