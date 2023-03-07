@@ -1,5 +1,6 @@
 package model;
 
+// Represents a movie with a title, review, genre, rating, year, and length in minutes
 public class Movie {
     private String title;
     private String review;

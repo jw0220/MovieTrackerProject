@@ -6,6 +6,7 @@ import model.MovieList;
 import java.util.List;
 import java.util.Scanner;
 
+// Movie Tracker application
 public class MovieTrackerApp {
     private Scanner input;
     private MovieList myMovieList;

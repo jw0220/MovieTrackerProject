@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+// A list of Movies
 public class MovieList {
     private ArrayList<Movie> movies;
 
