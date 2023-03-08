@@ -27,18 +27,16 @@ public class JsonWriterTest extends JsonTest {
     void testWriterEmptyMovieList() {
         try {
             MovieList ml = new MovieList();
-            JsonWriter writer = new JsonWriter("./data/testWriterMovieList.json");
+            JsonWriter writer = new JsonWriter("./data/testWriterEmptyMovieList.json");
             writer.open();
             writer.write(ml);
             writer.close();
 
             JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
             ml = reader.read();
-            // assertEquals("My work room", wr.getName());
-            // List<Movie> movies = ml.getMovies();
             assertEquals(0, ml.length());
         } catch (IOException e) {
-            //fail("Exception should not have been thrown");
+            fail("Exception should not have been thrown");
         }
     }
 

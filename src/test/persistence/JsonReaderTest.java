@@ -24,22 +24,20 @@ public class JsonReaderTest extends JsonTest {
 
     @Test
     void testReaderEmptyMovieList() {
-        JsonReader reader = new JsonReader("./data/testReaderEmptyMovieList.json");
+        JsonReader reader = new JsonReader("./data/testWriterEmptyMovieList.json");
         try {
             MovieList ml = reader.read();
-            //assertEquals("My work room", ml.getName());
             assertEquals(0, ml.length());
         } catch (IOException e) {
-            //fail("Couldn't read from file");
+            fail("Couldn't read from file");
         }
     }
 
     @Test
     void testReaderGeneralMovieList() {
-        JsonReader reader = new JsonReader("./data/testReaderGeneralMovieList.json");
+        JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
         try {
             MovieList ml = reader.read();
-            //assertEquals("My work room", wr.getName());
             List<Movie> movies= ml.getMovies();
             assertEquals(2, movies.size());
             checkMovie("Hunger Games", "good", "action", 2012, 4, 120,
@@ -47,7 +45,7 @@ public class JsonReaderTest extends JsonTest {
             checkMovie("Spider Man", "great", "action", 2018, 5, 110,
                     movies.get(1));
         } catch (IOException e) {
-            //fail("Couldn't read from file");
+            fail("Couldn't read from file");
         }
     }
 }
