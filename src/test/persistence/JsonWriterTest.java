@@ -53,7 +53,6 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/testWriterGeneralMovieList.json");
             ml = reader.read();
-            //assertEquals("My work room", wr.getName());
             List<Movie> movies = ml.getMovies();
             assertEquals(2, movies.size());
             checkMovie("Hunger Games", "good", "action", 2012, 4, 120, movies.get(0));
