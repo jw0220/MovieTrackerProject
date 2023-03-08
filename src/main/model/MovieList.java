@@ -103,6 +103,7 @@ public class MovieList implements Writable {
     }
 
     @Override
+    // EFFECTS: returns a Json object
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("movies", moviesToJson());
