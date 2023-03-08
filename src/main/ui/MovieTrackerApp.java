@@ -2,19 +2,29 @@ package ui;
 
 import model.Movie;
 import model.MovieList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import java.util.List;
 import java.util.Scanner;
 
-// Movie Tracker application
+// Represents the Movie Tracker application
 public class MovieTrackerApp {
+    private static final String JSON_STORE = "./data/MovieList.json";
     private Scanner input;
     private MovieList myMovieList;
     private Movie movie;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //EFFECTS: runs the movie tracker application
-    public MovieTrackerApp() {
+    public MovieTrackerApp() throws FileNotFoundException {
         init();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runTracker();
     }
 
@@ -23,8 +33,6 @@ public class MovieTrackerApp {
     private void runTracker() {
         boolean keepGoing = true;
         String command = null;
-
-        myMovieJournal();
 
         while (keepGoing) {
             displayMenu();
@@ -85,12 +93,14 @@ public class MovieTrackerApp {
 
     //EFFECTS: displays menu of options to user
     private void displayMenu() {
-        System.out.println("\nEnter Y to add more movies");
+        System.out.println("\nEnter Y to add a movie");
         System.out.println("\nEnter A to see my average rating");
         System.out.println("\nPress G to see my most watched genre");
         System.out.println("\nEnter H to see my highest rated title");
         System.out.println("\nEnter M to see my total minutes watched");
         System.out.println("\nEnter V to view all the movies I have watched");
+        System.out.println("\nEnter S to save movie list to file");
+        System.out.println("\nEnter L to load movie list from file");
         System.out.println("\nEnter Q to leave application");
     }
 
@@ -109,6 +119,10 @@ public class MovieTrackerApp {
             seeMinutesWatched();
         } else if (command.equals("V")) {
             viewMovies();
+        } else if (command.equals("S")) {
+            saveMovieList();
+        } else if (command.equals("L")) {
+            loadMovieList();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -144,4 +158,28 @@ public class MovieTrackerApp {
         List<String> movies = myMovieList.viewMoviesInMovieList();
         System.out.println(movies);
     }
+
+    //EFFECTS: saves MovieList to file
+    private void saveMovieList() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myMovieList);
+            jsonWriter.close();
+            System.out.println("Saved MovieList to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads MovieList from file
+    private void loadMovieList() {
+        try {
+            myMovieList = jsonReader.read();
+            System.out.println("Loaded MovieList from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
+

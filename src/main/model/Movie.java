@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a movie with a title, review, genre, rating, year, and length in minutes
-public class Movie {
+public class Movie implements Writable {
     private String title;
     private String review;
     private String genre;
@@ -96,5 +99,17 @@ public class Movie {
                + "\n Total Minutes: " + minutes
                + "\n My Rating: " + rating
                + "\n My Review: " + review;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Title", title);
+        json.put("Year", year);
+        json.put("Genre", genre);
+        json.put("Total Minutes", minutes);
+        json.put("Rating", rating);
+        json.put("Review", review);
+        return json;
     }
 }
