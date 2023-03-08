@@ -30,5 +30,6 @@ and total minutes watched of all the movies and tv shows combined.
 
 **References**
 - ui package inspired by TellerApp 
+- persistence package and tests inspired by JsonSerializationDemo
 
 
