@@ -81,4 +81,11 @@ class MovieTest {
         movie1.setMinutes(90);
         assertEquals(90, movie1.getMinutes());
     }
+
+    @Test
+    public void testToJson() {
+        movie1.toJson();
+        assertEquals("{\"Year\":2003,\"Rating\":4.5,\"Title\":\"Harry Potter\",\"Genre\":" +
+                "\"fantasy\",\"Review\":\"very good\",\"Total Minutes\":120}", movie1.toJson().toString());
+    }
 }

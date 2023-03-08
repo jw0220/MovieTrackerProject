@@ -107,4 +107,12 @@ public class MovieListTest {
         viewMovies.add(movie2.toString());
         assertEquals(viewMovies, list1.viewMoviesInMovieList());
     }
+
+    @Test
+    public void testToJson() {
+        list1.addMovie(movie1);
+        list1.toJson();
+        assertEquals("{\"movies\":[{\"Year\":2003,\"Rating\":4.5,\"Title\":\"Harry Potter\",\"Genre\":" +
+                "\"fantasy\",\"Review\":\"very good\",\"Total Minutes\":120}]}", list1.toJson().toString());
+    }
 }

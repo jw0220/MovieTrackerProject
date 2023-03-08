@@ -25,7 +25,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of MovieList to file
     public void write(MovieList ml) {
         JSONObject json = ml.toJson();
         saveToFile(json.toString(TAB));

@@ -8,9 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// A list of Movies
+// Represents a list of movies
 public class MovieList implements Writable {
-    //private String name;
     private ArrayList<Movie> movies;
 
     //EFFECTS: constructs a movie list as an empty list
@@ -101,7 +100,6 @@ public class MovieList implements Writable {
     // EFFECTS: returns an unmodifiable list of movies in this movie list
     public List<Movie> getMovies() {
         return Collections.unmodifiableList(movies);
-        //still need to test
     }
 
     @Override
@@ -111,12 +109,12 @@ public class MovieList implements Writable {
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
+    // EFFECTS: returns movies in this MovieList as a JSON array
     private JSONArray moviesToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (Movie t : movies) {
-            jsonArray.put(t.toJson());
+        for (Movie m : movies) {
+            jsonArray.put(m.toJson());
         }
 
         return jsonArray;
