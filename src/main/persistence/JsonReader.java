@@ -52,12 +52,12 @@ public class JsonReader {
     private void addMovies(MovieList ml, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("movies");
         for (Object json : jsonArray) {
-            JSONObject nextThingy = (JSONObject) json;
-            addMovie(ml, nextThingy);
+            JSONObject nextMovie = (JSONObject) json;
+            addMovie(ml, nextMovie);
         }
     }
 
-    // MODIFIES: wr
+    // MODIFIES: ml
     // EFFECTS: parses movie from JSON object and adds it to MovieList
     private void addMovie(MovieList ml, JSONObject jsonObject) {
         String title = jsonObject.getString("Title");

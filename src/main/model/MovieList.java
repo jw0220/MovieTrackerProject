@@ -5,14 +5,17 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 // A list of Movies
 public class MovieList implements Writable {
+    //private String name;
     private ArrayList<Movie> movies;
 
     //EFFECTS: constructs a movie list as an empty list
     public MovieList() {
+        //this.name = name;
         this.movies = new ArrayList<>();
     }
 
@@ -93,6 +96,12 @@ public class MovieList implements Writable {
     // EFFECTS: returns the numbers of movies currently in the list
     public int length() {
         return this.movies.size();
+    }
+
+    // EFFECTS: returns an unmodifiable list of movies in this movie list
+    public List<Movie> getMovies() {
+        return Collections.unmodifiableList(movies);
+        //still need to test
     }
 
     @Override
