@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class GUI {
     private JFrame frame;
-    public JLabel label;
+    private JLabel label;
 
     public GUI() {
         setFrame();
@@ -38,15 +38,6 @@ public class GUI {
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource()==button) {
-                    frame.dispose();
-                    NewWindow window = new NewWindow();
-                }
-            }
-        });
     }
 
     public void viewMoviesButton() {
