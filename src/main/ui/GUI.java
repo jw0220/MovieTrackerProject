@@ -7,26 +7,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class GUI {
     private JFrame frame;
     private JLabel label;
-    private double rating;
-    private int minutes;
-    private String title;
-    private String genre;
-    private int year;
-    private String review;
+    private MovieList myMovieList;
+    private Movie movie;
+
     private static final String JSON_STORE = "./data/MovieList.json";
 
     public GUI() {
-        this.title = null;
-        this.minutes = 0;
-        this.rating = 0;
-        this.genre = null;
-        this.year = 0;
-        this.review = null;
-        setFrame();
+        myMovieList = new MovieList();
+        movie = new Movie(null, null, null, 0, 0, 0);
         setTitle();
         ImageIcon background = new ImageIcon("images/moviebackground.jpg");
 
@@ -35,7 +28,7 @@ public class GUI {
         label.setIcon(background);
         frame.add(label);
         addButtons();
-        //frame.getContentPane().add(label);
+        frame.pack();
     }
 
     public void addButtons() {
@@ -81,7 +74,7 @@ public class GUI {
         c.gridy = 0;
         JTextField textTitle = new JTextField();
         textTitle.setPreferredSize(new Dimension(200, 20));
-        textTitle.addActionListener(e -> textTitle.getText());
+        textTitle.addActionListener(e -> movie.setTitle(textTitle.getText()));
         frame.getContentPane().add(textTitle, c);
 
         c.gridx = 0;
@@ -93,7 +86,7 @@ public class GUI {
         c.gridy = 1;
         JTextField textYear = new JTextField();
         textYear.setPreferredSize(new Dimension(200, 20));
-        textYear.addActionListener(e -> textYear.getText());
+        textYear.addActionListener(e -> movie.setYear(Integer.parseInt(textYear.getText())));
         frame.getContentPane().add(textYear, c);
 
         c.gridx = 0;
@@ -105,7 +98,7 @@ public class GUI {
         c.gridy = 2;
         JTextField textRating = new JTextField();
         textRating.setPreferredSize(new Dimension(200, 20));
-        textRating.addActionListener(e -> textRating.getText());
+        textRating.addActionListener(e -> movie.setRating(Integer.parseInt(textRating.getText())));
         frame.getContentPane().add(textRating, c);
 
         c.gridx = 0;
@@ -117,7 +110,7 @@ public class GUI {
         c.gridy = 3;
         JTextField textReview = new JTextField();
         textReview.setPreferredSize(new Dimension(200, 20));
-        textReview.addActionListener(e -> textReview.getText());
+        textReview.addActionListener(e -> movie.setReview(textReview.getText()));
         frame.getContentPane().add(textReview, c);
 
         c.gridx = 0;
@@ -128,7 +121,7 @@ public class GUI {
         c.gridx = 1;
         c.gridy = 4;
         JTextField textMinutes = new JTextField();
-        textMinutes.addActionListener(e -> minutes.equals(textMinutes.getText()));
+        textMinutes.addActionListener(e -> movie.setMinutes(Integer.parseInt(textMinutes.getText())));
         frame.getContentPane().add(textMinutes, c);
 
         c.gridx = 0;
@@ -140,8 +133,7 @@ public class GUI {
         c.gridy = 5;
         JTextField textGenre = new JTextField();
         textGenre.setPreferredSize(new Dimension(200, 20));
-        textGenre.addActionListener(e -> textGenre.getText());
-        genre.equals(textGenre.getText());
+        textGenre.addActionListener(e -> movie.setGenre(textGenre.getText()));
         frame.getContentPane().add(textGenre, c);
 
         c.gridx = 0;
@@ -169,6 +161,8 @@ public class GUI {
 
         JPanel panel = viewMoviesToString();
 
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
         JScrollPane scrollPane = new JScrollPane(panel);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -185,17 +179,17 @@ public class GUI {
 
     public JPanel viewMoviesToString() {
         JPanel panel = new JPanel();
-        MovieList myMovies = new MovieList();
-        myMovies.addMovie(new Movie(title, review, genre, year, rating, minutes));
-        for (int i = 0; i < myMovies.length(); i++) {
-            Movie movie = myMovies.getMovies().get(i);
+        myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
+                movie.getRating(), movie.getMinutes()));
+        for (int i = 0; i < myMovieList.length(); i++) {
+            Movie movie = myMovieList.getMovies().get(i);
 
-            JLabel titleLabel = new JLabel("\tTitle: " + movie.getTitle());
-            JLabel yearLabel = new JLabel("\tYear: " + movie.getYear());
-            JLabel reviewLabel = new JLabel("\tReview: " + movie.getReview());
-            JLabel genreLabel = new JLabel("\tGenre: " + movie.getGenre());
-            JLabel ratingLabel = new JLabel("\tRating: " + movie.getRating());
-            JLabel minutesLabel = new JLabel("\tTotal Minutes: " + movie.getMinutes());
+            JLabel titleLabel = new JLabel("\nTitle: " + movie.getTitle());
+            JLabel yearLabel = new JLabel("\nYear: " + movie.getYear());
+            JLabel reviewLabel = new JLabel("\nReview: " + movie.getReview());
+            JLabel genreLabel = new JLabel("\nGenre: " + movie.getGenre());
+            JLabel ratingLabel = new JLabel("\nRating: " + movie.getRating());
+            JLabel minutesLabel = new JLabel("\nTotal Minutes: " + movie.getMinutes());
 
             panel.add(titleLabel);
             panel.add(reviewLabel);
