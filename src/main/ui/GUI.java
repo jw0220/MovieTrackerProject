@@ -178,6 +178,7 @@ public class GUI {
     }
 
     public JPanel viewMoviesToString() {
+        //fix
         JPanel panel = new JPanel();
         myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
                 movie.getRating(), movie.getMinutes()));
