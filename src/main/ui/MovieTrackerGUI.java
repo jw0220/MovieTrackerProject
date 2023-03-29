@@ -19,13 +19,6 @@ public class MovieTrackerGUI {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private String newTitle;
-//    private String review;
-    private double newRating;
-//    private int year;
-//    private int minutes;
-//    private String genre;
-
     private static final String JSON_STORE = "./data/MovieList.json";
 
     //EFFECTS: runs the movie tracker GUI
@@ -45,14 +38,12 @@ public class MovieTrackerGUI {
     //MODIFIES: this
     //EFFECTS: initializes fields
     public void init() {
-        newTitle = "";
-        newRating = 0;
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
         myMovieList = new MovieList();
-        movie = new Movie(newTitle, "", "", 0, 0, 0);
+        movie = new Movie(null, null, null, 0, 0, 0);
     }
 
     //EFFECTS: adds all the buttons to the homepage
@@ -86,7 +77,6 @@ public class MovieTrackerGUI {
         frame.setPreferredSize(new Dimension(500, 500));
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
-
         frame.getContentPane().setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -100,7 +90,6 @@ public class MovieTrackerGUI {
         c.gridy = 0;
         JTextField textTitle = new JTextField();
         textTitle.setPreferredSize(new Dimension(200, 20));
-        textTitle.addActionListener(e -> newTitle = textTitle.getText());
         frame.getContentPane().add(textTitle, c);
 
         c.gridx = 0;
@@ -112,19 +101,17 @@ public class MovieTrackerGUI {
         c.gridy = 1;
         JTextField textYear = new JTextField();
         textYear.setPreferredSize(new Dimension(200, 20));
-        textYear.addActionListener(e -> movie.setYear(Integer.parseInt(textYear.getText())));
         frame.getContentPane().add(textYear, c);
 
         c.gridx = 0;
         c.gridy = 2;
-        JLabel rating = new JLabel("Rating:  ");
+        JLabel rating = new JLabel("Rating(0-5):  ");
         frame.getContentPane().add(rating, c);
 
         c.gridx = 1;
         c.gridy = 2;
         JTextField textRating = new JTextField();
         textRating.setPreferredSize(new Dimension(200, 20));
-        textRating.addActionListener(e -> newRating = Double.parseDouble(textRating.getText()));
         frame.getContentPane().add(textRating, c);
 
         c.gridx = 0;
@@ -136,7 +123,6 @@ public class MovieTrackerGUI {
         c.gridy = 3;
         JTextField textReview = new JTextField();
         textReview.setPreferredSize(new Dimension(200, 20));
-        textReview.addActionListener(e -> movie.setReview(textReview.getText()));
         frame.getContentPane().add(textReview, c);
 
         c.gridx = 0;
@@ -147,7 +133,6 @@ public class MovieTrackerGUI {
         c.gridx = 1;
         c.gridy = 4;
         JTextField textMinutes = new JTextField();
-        textMinutes.addActionListener(e -> movie.setMinutes(Integer.parseInt(textMinutes.getText())));
         frame.getContentPane().add(textMinutes, c);
 
         c.gridx = 0;
@@ -159,7 +144,6 @@ public class MovieTrackerGUI {
         c.gridy = 5;
         JTextField textGenre = new JTextField();
         textGenre.setPreferredSize(new Dimension(200, 20));
-        textGenre.addActionListener(e -> movie.setGenre(textGenre.getText()));
         frame.getContentPane().add(textGenre, c);
 
         c.gridx = 0;
@@ -168,11 +152,17 @@ public class MovieTrackerGUI {
         JButton done = new JButton("Add Movie to MovieList");
         frame.getContentPane().add(done, c);
         done.addActionListener(e -> {
-            myMovieList.addMovie(new Movie(newTitle, movie.getReview(), movie.getGenre(), movie.getYear(),
-                    newRating, movie.getMinutes()));
+            movie.setTitle(textTitle.getText());
+            movie.setYear(Integer.parseInt(textYear.getText()));
+            movie.setRating(Double.parseDouble(textRating.getText()));
+            movie.setGenre(textGenre.getText());
+            movie.setMinutes(Integer.parseInt(textMinutes.getText()));
+            movie.setReview(textReview.getText());
+            myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
+                    movie.getRating(), movie.getMinutes()));
+            frame.dispose();
             viewMovies();
         });
-
         frame.pack();
     }
 
@@ -201,7 +191,6 @@ public class MovieTrackerGUI {
 
         frame.setVisible(true);
         frame.pack();
-        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 800);
 
         frame.setLocationRelativeTo(null);
@@ -239,6 +228,13 @@ public class MovieTrackerGUI {
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+
+        button.addActionListener(e -> highestRatedTitle());
+    }
+
+    public void highestRatedTitle() {
+        JOptionPane.showMessageDialog(null, myMovieList.getHighestRatedTitle(),
+                "My Highest Rated Title", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void mostWatchedGenreButton() {
@@ -248,6 +244,13 @@ public class MovieTrackerGUI {
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+
+        button.addActionListener(e -> mostWatchedGenre());
+    }
+
+    public void mostWatchedGenre() {
+        JOptionPane.showMessageDialog(null, myMovieList.getMostWatchedGenre(),
+                "My Most Watched Genre", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void averageRatingButton() {
@@ -257,6 +260,13 @@ public class MovieTrackerGUI {
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+
+        button.addActionListener(e -> averageRating());
+    }
+
+    public void averageRating() {
+        JOptionPane.showMessageDialog(null, myMovieList.getAverageRating(), "My Average Rating",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
     public void totalMinutesButton() {
@@ -266,6 +276,13 @@ public class MovieTrackerGUI {
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+
+        button.addActionListener(e -> totalMinutedWatched());
+    }
+
+    public void totalMinutedWatched() {
+        JOptionPane.showMessageDialog(null, myMovieList.getTotalMinutesWatched(),
+                "Total Minutes Watched", JOptionPane.PLAIN_MESSAGE);
     }
 
     public void saveButton() {
