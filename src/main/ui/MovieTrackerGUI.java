@@ -14,7 +14,7 @@ import java.io.IOException;
 public class MovieTrackerGUI {
     private JFrame frame;
     private JFrame addMovieFrame;
-    private GridBagConstraints c;
+    private GridBagConstraints constraints;
     private JLabel label;
     private MovieList myMovieList;
     private Movie movie;
@@ -77,7 +77,7 @@ public class MovieTrackerGUI {
 
     public void addMovieGUI() {
         setAddMovieFrame();
-        c = new GridBagConstraints();
+        constraints = new GridBagConstraints();
 
         titleTextField();
         yearTextField();
@@ -97,89 +97,89 @@ public class MovieTrackerGUI {
     }
 
     public void titleTextField() {
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
         JLabel title = new JLabel("Title:  ");
-        addMovieFrame.getContentPane().add(title, c);
+        addMovieFrame.getContentPane().add(title, constraints);
 
-        c.gridx = 1;
-        c.gridy = 0;
+        constraints.gridx = 1;
+        constraints.gridy = 0;
         textTitle = new JTextField();
         textTitle.setPreferredSize(new Dimension(200, 20));
-        addMovieFrame.getContentPane().add(textTitle, c);
+        addMovieFrame.getContentPane().add(textTitle, constraints);
     }
 
     public void yearTextField() {
-        c.gridx = 0;
-        c.gridy = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
         JLabel year = new JLabel("Year:  ");
-        addMovieFrame.getContentPane().add(year, c);
+        addMovieFrame.getContentPane().add(year, constraints);
 
-        c.gridx = 1;
-        c.gridy = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 1;
         textYear = new JTextField();
         textYear.setPreferredSize(new Dimension(200, 20));
-        addMovieFrame.getContentPane().add(textYear, c);
+        addMovieFrame.getContentPane().add(textYear, constraints);
     }
 
     public void ratingTextField() {
-        c.gridx = 0;
-        c.gridy = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 2;
         JLabel rating = new JLabel("Rating(0-5):  ");
-        addMovieFrame.getContentPane().add(rating, c);
+        addMovieFrame.getContentPane().add(rating, constraints);
 
-        c.gridx = 1;
-        c.gridy = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 2;
         textRating = new JTextField();
         textRating.setPreferredSize(new Dimension(200, 20));
-        addMovieFrame.getContentPane().add(textRating, c);
+        addMovieFrame.getContentPane().add(textRating, constraints);
     }
 
     public void reviewTextField() {
-        c.gridx = 0;
-        c.gridy = 3;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
         JLabel review = new JLabel("Review:  ");
-        addMovieFrame.getContentPane().add(review, c);
+        addMovieFrame.getContentPane().add(review, constraints);
 
-        c.gridx = 1;
-        c.gridy = 3;
+        constraints.gridx = 1;
+        constraints.gridy = 3;
         textReview = new JTextField();
         textReview.setPreferredSize(new Dimension(200, 20));
-        addMovieFrame.getContentPane().add(textReview, c);
+        addMovieFrame.getContentPane().add(textReview, constraints);
     }
 
     public void minutesTextField() {
-        c.gridx = 0;
-        c.gridy = 4;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
         JLabel minutes = new JLabel("Total Minutes:  ");
-        addMovieFrame.getContentPane().add(minutes, c);
+        addMovieFrame.getContentPane().add(minutes, constraints);
 
-        c.gridx = 1;
-        c.gridy = 4;
+        constraints.gridx = 1;
+        constraints.gridy = 4;
         textMinutes = new JTextField();
-        addMovieFrame.getContentPane().add(textMinutes, c);
+        addMovieFrame.getContentPane().add(textMinutes, constraints);
     }
 
     public void genreTextField() {
-        c.gridx = 0;
-        c.gridy = 5;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
         JLabel genre = new JLabel("Genre:  ");
-        addMovieFrame.getContentPane().add(genre, c);
+        addMovieFrame.getContentPane().add(genre, constraints);
 
-        c.gridx = 1;
-        c.gridy = 5;
+        constraints.gridx = 1;
+        constraints.gridy = 5;
         textGenre = new JTextField();
         textGenre.setPreferredSize(new Dimension(200, 20));
-        addMovieFrame.getContentPane().add(textGenre, c);
+        addMovieFrame.getContentPane().add(textGenre, constraints);
     }
 
     public void doneButton() {
-        c.gridx = 0;
-        c.gridy = 6;
-        c.gridwidth = 2;
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        constraints.gridwidth = 2;
         JButton done = new JButton("Done!");
-        addMovieFrame.getContentPane().add(done, c);
+        addMovieFrame.getContentPane().add(done, constraints);
         done.addActionListener(e -> done());
         addMovieFrame.pack();
     }
