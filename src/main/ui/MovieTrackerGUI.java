@@ -26,7 +26,6 @@ public class MovieTrackerGUI {
     private JTextField textReview;
     private JTextField textMinutes;
     private JTextField textGenre;
-
     private static final String JSON_STORE = "./data/MovieList.json";
 
     //EFFECTS: runs the movie tracker GUI
@@ -46,7 +45,6 @@ public class MovieTrackerGUI {
     //MODIFIES: this
     //EFFECTS: initializes fields
     public void init() {
-
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
@@ -89,7 +87,6 @@ public class MovieTrackerGUI {
         minutesTextField();
         genreTextField();
         doneButton();
-        addMovieFrame.pack();
     }
 
     public void setAddMovieFrame() {
@@ -196,6 +193,7 @@ public class MovieTrackerGUI {
             addMovieFrame.dispose();
             viewMovies();
         });
+        addMovieFrame.pack();
     }
 
     public void viewMoviesButton() {
@@ -209,7 +207,6 @@ public class MovieTrackerGUI {
     }
 
     public void viewMovies() {
-
         JFrame frame = new JFrame("Showing All Movies");
         JPanel panel = viewMoviesToString();
 
