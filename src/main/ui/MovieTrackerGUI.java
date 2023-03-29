@@ -47,7 +47,6 @@ public class MovieTrackerGUI {
     public void init() {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-
         myMovieList = new MovieList();
         movie = new Movie(null, null, null, 0, 0, 0);
     }
@@ -181,19 +180,21 @@ public class MovieTrackerGUI {
         c.gridwidth = 2;
         JButton done = new JButton("Done!");
         addMovieFrame.getContentPane().add(done, c);
-        done.addActionListener(e -> {
-            movie.setTitle(textTitle.getText());
-            movie.setYear(Integer.parseInt(textYear.getText()));
-            movie.setRating(Double.parseDouble(textRating.getText()));
-            movie.setGenre(textGenre.getText());
-            movie.setMinutes(Integer.parseInt(textMinutes.getText()));
-            movie.setReview(textReview.getText());
-            myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
-                    movie.getRating(), movie.getMinutes()));
-            addMovieFrame.dispose();
-            viewMovies();
-        });
+        done.addActionListener(e -> done());
         addMovieFrame.pack();
+    }
+
+    public void done() {
+        movie.setTitle(textTitle.getText());
+        movie.setYear(Integer.parseInt(textYear.getText()));
+        movie.setRating(Double.parseDouble(textRating.getText()));
+        movie.setGenre(textGenre.getText());
+        movie.setMinutes(Integer.parseInt(textMinutes.getText()));
+        movie.setReview(textReview.getText());
+        myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
+                movie.getRating(), movie.getMinutes()));
+        addMovieFrame.dispose();
+        viewMovies();
     }
 
     public void viewMoviesButton() {
