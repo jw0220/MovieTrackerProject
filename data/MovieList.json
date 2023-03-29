@@ -1,26 +1,18 @@
 {"movies": [
     {
-        "Year": 2012,
-        "Rating": 2,
-        "Title": "nsognslg",
-        "Genre": "sfgwen",
-        "Review": "sfnlwsn",
-        "Total Minutes": 22
-    },
-    {
-        "Year": 2012,
-        "Rating": 1,
-        "Title": "gmnslgnsl",
-        "Genre": "f",
-        "Review": "fgemsp",
-        "Total Minutes": 222
-    },
-    {
         "Year": 2,
         "Rating": 2,
-        "Title": "ngskgn",
-        "Genre": "f",
-        "Review": "f",
+        "Title": "nglwsgn",
+        "Genre": "e",
+        "Review": "gsgw",
         "Total Minutes": 2
+    },
+    {
+        "Year": 2012,
+        "Rating": 2,
+        "Title": "gsron",
+        "Genre": "1",
+        "Review": "f",
+        "Total Minutes": 3
     }
 ]}
