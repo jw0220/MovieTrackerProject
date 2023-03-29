@@ -2,24 +2,35 @@ package ui;
 
 import model.Movie;
 import model.MovieList;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class GUI {
+// Represents a Movie Tracker GUI application
+public class MovieTrackerGUI {
     private JFrame frame;
     private JLabel label;
     private MovieList myMovieList;
     private Movie movie;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+    private String newTitle;
+//    private String review;
+    private double newRating;
+//    private int year;
+//    private int minutes;
+//    private String genre;
 
     private static final String JSON_STORE = "./data/MovieList.json";
 
-    public GUI() {
-        myMovieList = new MovieList();
-        movie = new Movie(null, null, null, 0, 0, 0);
+    //EFFECTS: runs the movie tracker GUI
+    public MovieTrackerGUI() throws FileNotFoundException {
+        init();
         setTitle();
         ImageIcon background = new ImageIcon("images/moviebackground.jpg");
 
@@ -31,6 +42,20 @@ public class GUI {
         frame.pack();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes fields
+    public void init() {
+        newTitle = "";
+        newRating = 0;
+
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+
+        myMovieList = new MovieList();
+        movie = new Movie(newTitle, "", "", 0, 0, 0);
+    }
+
+    //EFFECTS: adds all the buttons to the homepage
     public void addButtons() {
         addMovieButton();
         viewMoviesButton();
@@ -54,6 +79,7 @@ public class GUI {
         label.add(button);
     }
 
+    //fix
     @SuppressWarnings("methodlength")
     public void addMovieGUI() {
         JFrame frame = new JFrame();
@@ -74,7 +100,7 @@ public class GUI {
         c.gridy = 0;
         JTextField textTitle = new JTextField();
         textTitle.setPreferredSize(new Dimension(200, 20));
-        textTitle.addActionListener(e -> movie.setTitle(textTitle.getText()));
+        textTitle.addActionListener(e -> newTitle = textTitle.getText());
         frame.getContentPane().add(textTitle, c);
 
         c.gridx = 0;
@@ -98,7 +124,7 @@ public class GUI {
         c.gridy = 2;
         JTextField textRating = new JTextField();
         textRating.setPreferredSize(new Dimension(200, 20));
-        textRating.addActionListener(e -> movie.setRating(Integer.parseInt(textRating.getText())));
+        textRating.addActionListener(e -> newRating = Double.parseDouble(textRating.getText()));
         frame.getContentPane().add(textRating, c);
 
         c.gridx = 0;
@@ -141,7 +167,11 @@ public class GUI {
         c.gridwidth = 2;
         JButton done = new JButton("Add Movie to MovieList");
         frame.getContentPane().add(done, c);
-        done.addActionListener(e -> viewMovies());
+        done.addActionListener(e -> {
+            myMovieList.addMovie(new Movie(newTitle, movie.getReview(), movie.getGenre(), movie.getYear(),
+                    newRating, movie.getMinutes()));
+            viewMovies();
+        });
 
         frame.pack();
     }
@@ -157,8 +187,8 @@ public class GUI {
     }
 
     public void viewMovies() {
-        JFrame frame = new JFrame("Showing All Movies");
 
+        JFrame frame = new JFrame("Showing All Movies");
         JPanel panel = viewMoviesToString();
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -178,10 +208,8 @@ public class GUI {
     }
 
     public JPanel viewMoviesToString() {
-        //fix
         JPanel panel = new JPanel();
-        myMovieList.addMovie(new Movie(movie.getTitle(), movie.getReview(), movie.getGenre(), movie.getYear(),
-                movie.getRating(), movie.getMinutes()));
+
         for (int i = 0; i < myMovieList.length(); i++) {
             Movie movie = myMovieList.getMovies().get(i);
 
@@ -191,6 +219,7 @@ public class GUI {
             JLabel genreLabel = new JLabel("\nGenre: " + movie.getGenre());
             JLabel ratingLabel = new JLabel("\nRating: " + movie.getRating());
             JLabel minutesLabel = new JLabel("\nTotal Minutes: " + movie.getMinutes());
+            JLabel spaceLabel = new JLabel("\n ");
 
             panel.add(titleLabel);
             panel.add(reviewLabel);
@@ -198,6 +227,7 @@ public class GUI {
             panel.add(yearLabel);
             panel.add(ratingLabel);
             panel.add(minutesLabel);
+            panel.add(spaceLabel);
         }
         return panel;
     }
@@ -240,23 +270,49 @@ public class GUI {
 
     public void saveButton() {
         JButton button = new JButton();
-        button.setText("Save");
+        button.setText("Save Movies");
         button.setBounds(405, 500, 200, 75);
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+        button.addActionListener(e -> saveMovies());
+    }
+
+    public void saveMovies() {
+        JFrame frame = new JFrame("Saving Movies");
+
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myMovieList);
+            jsonWriter.close();
+            JOptionPane.showMessageDialog(frame, "Movies Saved.");
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(frame, "Unable to write to file: " + JSON_STORE);
+        }
     }
 
     public void loadButton() {
         JButton button = new JButton();
-        button.setText("Load Saved Tracker");
+        button.setText("Load Saved Movies");
         button.setBounds(405, 599, 200, 75);
         button.setBackground(Color.white);
         button.setFocusable(false);
         label.add(button);
+        button.addActionListener(e -> loadMovies());
     }
 
-    //EFFECTS: sets the title
+    public void loadMovies() {
+        JFrame frame = new JFrame("Loaded Movies");
+
+        try {
+            myMovieList = jsonReader.read();
+            JOptionPane.showMessageDialog(frame, "Loaded movies from " + JSON_STORE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(frame, "Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    //EFFECTS: sets the title of the frame
     public void setTitle() {
         setFrame();
         JPanel panel = new JPanel();

@@ -57,7 +57,7 @@ public class MovieTrackerApp {
 
         System.out.println("Enter movie title: ");
         movie.setTitle(input.nextLine());
-        String title = movie.getTitle();
+//        String title = movie.getTitle();
 
         System.out.println("Enter movie year: ");
         movie.setYear(input.nextInt());
@@ -81,7 +81,7 @@ public class MovieTrackerApp {
         movie.setRating(input.nextDouble());
         double rating = movie.getRating();
 
-        myMovieList.addMovie(new Movie(title, review, genre, year, rating, minutes));
+        myMovieList.addMovie(new Movie(movie.getTitle(), review, genre, year, rating, minutes));
     }
 
     //MODIFIES: this
