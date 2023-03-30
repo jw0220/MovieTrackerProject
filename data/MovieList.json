@@ -1,18 +1,34 @@
 {"movies": [
     {
-        "Year": 2,
-        "Rating": 2,
-        "Title": "nglwsgn",
-        "Genre": "e",
-        "Review": "gsgw",
-        "Total Minutes": 2
+        "Year": 2019,
+        "Rating": 4,
+        "Title": "parasite",
+        "Genre": "thriller",
+        "Review": "good",
+        "Total Minutes": 120
     },
     {
-        "Year": 2012,
-        "Rating": 2,
-        "Title": "gsron",
-        "Genre": "1",
-        "Review": "f",
-        "Total Minutes": 3
+        "Year": 2017,
+        "Rating": 4.5,
+        "Title": "thor",
+        "Genre": "action",
+        "Review": "good",
+        "Total Minutes": 120
+    },
+    {
+        "Year": 2019,
+        "Rating": 4.5,
+        "Title": "quiet place",
+        "Genre": "thriller",
+        "Review": "good",
+        "Total Minutes": 120
+    },
+    {
+        "Year": 2017,
+        "Rating": 5,
+        "Title": "get out",
+        "Genre": "thriller",
+        "Review": "good",
+        "Total Minutes": 200
     }
 ]}

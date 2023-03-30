@@ -28,7 +28,8 @@ public class MovieTrackerGUI {
     private JTextField textGenre;
     private static final String JSON_STORE = "./data/MovieList.json";
 
-    //EFFECTS: runs the movie tracker GUI
+    //MODIFIES: this
+    //EFFECTS: runs the movie tracker GUI and initializes the home page.
     public MovieTrackerGUI() throws FileNotFoundException {
         init();
         setTitle();
@@ -63,6 +64,7 @@ public class MovieTrackerGUI {
         loadButton();
     }
 
+    //MODIFIES: this
     //EFFECTS: makes the Add Movie button
     public void addMovieButton() {
         JButton button = new JButton();
@@ -75,6 +77,8 @@ public class MovieTrackerGUI {
         label.add(button);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the GUI for when the Add Movie button is clicked
     public void addMovieGUI() {
         setAddMovieFrame();
         constraints = new GridBagConstraints();
@@ -88,6 +92,8 @@ public class MovieTrackerGUI {
         doneButton();
     }
 
+    //MODIFIES: this
+    //EFFECTS: initializes a new frame for the GUI when the Add Movie button is clicked
     public void setAddMovieFrame() {
         addMovieFrame = new JFrame();
         addMovieFrame.setPreferredSize(new Dimension(500, 500));
@@ -96,6 +102,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().setLayout(new GridBagLayout());
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input the title of the movie
     public void titleTextField() {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
@@ -110,6 +118,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textTitle, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input the year of the movie
     public void yearTextField() {
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -123,6 +133,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textYear, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input the rating of the movie
     public void ratingTextField() {
         constraints.gridx = 0;
         constraints.gridy = 2;
@@ -136,6 +148,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textRating, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input their review of the movie
     public void reviewTextField() {
         constraints.gridx = 0;
         constraints.gridy = 3;
@@ -149,6 +163,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textReview, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input the minutes of the movie
     public void minutesTextField() {
         constraints.gridx = 0;
         constraints.gridy = 4;
@@ -161,6 +177,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textMinutes, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the text box so the user can input the genre of the movie
     public void genreTextField() {
         constraints.gridx = 0;
         constraints.gridy = 5;
@@ -174,6 +192,8 @@ public class MovieTrackerGUI {
         addMovieFrame.getContentPane().add(textGenre, constraints);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the done! button when user is done inputting their user info
     public void doneButton() {
         constraints.gridx = 0;
         constraints.gridy = 6;
@@ -184,6 +204,8 @@ public class MovieTrackerGUI {
         addMovieFrame.pack();
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the GUI for when done! button is clicked
     public void done() {
         movie.setTitle(textTitle.getText());
         movie.setYear(Integer.parseInt(textYear.getText()));
@@ -197,6 +219,8 @@ public class MovieTrackerGUI {
         viewMovies();
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the View Movies button
     public void viewMoviesButton() {
         JButton button = new JButton();
         button.setText("View My Watched Movies");
@@ -207,6 +231,8 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> viewMovies());
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the GUI for when the view movies button is clicked
     public void viewMovies() {
         JFrame frame = new JFrame("Showing All Movies");
         JPanel panel = viewMoviesToString();
@@ -226,6 +252,7 @@ public class MovieTrackerGUI {
         frame.setLocationRelativeTo(null);
     }
 
+    //EFFECTS: makes the panel that prints out the list of movies that the user entered
     public JPanel viewMoviesToString() {
         JPanel panel = new JPanel();
 
@@ -251,6 +278,8 @@ public class MovieTrackerGUI {
         return panel;
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the highest rated title button
     public void highestRatedTitleButton() {
         JButton button = new JButton();
         button.setText("My Highest Rated Title");
@@ -262,11 +291,15 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> highestRatedTitle());
     }
 
+    //EFFECTS: makes a dialogue box to show the highest rated movie title when the highest movie title button
+    //         is clicked
     public void highestRatedTitle() {
         JOptionPane.showMessageDialog(null, myMovieList.getHighestRatedTitle(),
                 "My Highest Rated Title", JOptionPane.PLAIN_MESSAGE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the most watched genre button
     public void mostWatchedGenreButton() {
         JButton button = new JButton();
         button.setText("My Most Watched Genre");
@@ -278,11 +311,16 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> mostWatchedGenre());
     }
 
+
+    //EFFECTS: makes a dialogue box to show the most watched genre when the most watched genre button
+    //         is clicked
     public void mostWatchedGenre() {
         JOptionPane.showMessageDialog(null, myMovieList.getMostWatchedGenre(),
                 "My Most Watched Genre", JOptionPane.PLAIN_MESSAGE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the average rating button
     public void averageRatingButton() {
         JButton button = new JButton();
         button.setText("My Average Rating");
@@ -294,11 +332,15 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> averageRating());
     }
 
+    //EFFECTS: makes a dialogue box to show the most watched genre when the most watched genre button
+    //         is clicked
     public void averageRating() {
         JOptionPane.showMessageDialog(null, myMovieList.getAverageRating(), "My Average Rating",
                 JOptionPane.PLAIN_MESSAGE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the total minutes button
     public void totalMinutesButton() {
         JButton button = new JButton();
         button.setText("My Total Minutes Watched");
@@ -310,11 +352,15 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> totalMinutedWatched());
     }
 
+    //EFFECTS: makes a dialogue box to show the total minutes watched when the total minuted watched button
+    //         is clicked
     public void totalMinutedWatched() {
         JOptionPane.showMessageDialog(null, myMovieList.getTotalMinutesWatched(),
                 "Total Minutes Watched", JOptionPane.PLAIN_MESSAGE);
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the save button
     public void saveButton() {
         JButton button = new JButton();
         button.setText("Save Movies");
@@ -325,6 +371,7 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> saveMovies());
     }
 
+    //EFFECTS: saves MovieList to file
     public void saveMovies() {
         JFrame frame = new JFrame("Saving Movies");
 
@@ -338,6 +385,8 @@ public class MovieTrackerGUI {
         }
     }
 
+    //MODIFIES: this
+    //EFFECTS: makes the load button
     public void loadButton() {
         JButton button = new JButton();
         button.setText("Load Saved Movies");
@@ -348,6 +397,8 @@ public class MovieTrackerGUI {
         button.addActionListener(e -> loadMovies());
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads MovieList from file
     public void loadMovies() {
         JFrame frame = new JFrame("Loaded Movies");
 
@@ -359,7 +410,8 @@ public class MovieTrackerGUI {
         }
     }
 
-    //EFFECTS: sets the title of the frame
+    //MODIFIES: this
+    //EFFECTS: sets the title for the main/first frame
     public void setTitle() {
         setFrame();
         JPanel panel = new JPanel();
@@ -374,12 +426,12 @@ public class MovieTrackerGUI {
         frame.add(panel, BorderLayout.NORTH);
     }
 
-    //EFFECTS: sets the frame of GUI
+    //MODIFIES: this
+    //EFFECTS: sets the main/first frame of GUI
     public void setFrame() {
         frame = new JFrame();
         frame.setSize(1040, 800);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setLayout(null);
         frame.setLocationRelativeTo(null);
         frame.setTitle("Movie Tracker App");
         frame.setLayout(new BorderLayout());
