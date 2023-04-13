@@ -37,10 +37,38 @@ and total minutes watched of all the movies and tv shows combined.
 - You can save the state of my application by clicking the "Save Movies" button.
 - You can reload the state of my application by clicking the "Load Saved Movies" button.
 
+# Phase 4: Task 2
+
+logged event when clicking the "Add Movie" button to log the key event of adding movie to the movie list.
+- Thu Apr 13 12:58:22 PDT 2023
+  Added hunger games to list of movies
+
+logged event when clicking the "My Highest Rated Title" button to log the key event of filtering out the highest rated 
+movie title in the movie list.
+- Thu Apr 13 12:58:30 PDT 2023
+  Got highest rated title so far
+
+logged event when clicking the "My Most Watched Genre" button to log the key event of filtering out the most watched 
+genre in the movie list.
+- Thu Apr 13 12:58:32 PDT 2023
+  Got most watched genre so far
+
+logged event when clicking the "My Total Minutes Watched" button to log the key event of adding all the minutes 
+watched in the movie list.
+- Thu Apr 13 12:58:35 PDT 2023
+  Got total minutes watched so far
+
+logged event when clicking the "My Average Rating" button to log the key event of filtering out the ratings in the 
+movie list and averaging it.
+- Thu Apr 13 12:58:37 PDT 2023
+  Got average rating so far
+
 **References**
 - ui package inspired by TellerApp 
 - persistence package and tests inspired by JsonSerializationDemo
 - GUI made with the help of https://docs.oracle.com/javase/tutorial/uiswing/examples/components/index.html &
   https://www.youtube.com/watch?v=iE8tZ0hn2Ws & https://www.youtube.com/watch?v=Kmgo00avvEw
+
+
 
 
