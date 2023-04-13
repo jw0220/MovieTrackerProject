@@ -24,7 +24,7 @@ public class MovieList implements Writable {
     //EFFECTS: add movie to the movie list
     public void addMovie(Movie movie) {
         this.movies.add(movie);
-        EventLog.getInstance().logEvent(new Event("Added " + movie.getTitle() + "to list of movies"));
+        EventLog.getInstance().logEvent(new Event("Added " + movie.getTitle() + " to list of movies"));
     }
 
     //EFFECTS: get the highest rated title out of the list. If there is a tie for the highest rated title then
