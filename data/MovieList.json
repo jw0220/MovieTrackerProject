@@ -1,34 +1,8 @@
-{"movies": [
-    {
-        "Year": 2019,
-        "Rating": 4,
-        "Title": "parasite",
-        "Genre": "thriller",
-        "Review": "good",
-        "Total Minutes": 120
-    },
-    {
-        "Year": 2017,
-        "Rating": 4.5,
-        "Title": "thor",
-        "Genre": "action",
-        "Review": "good",
-        "Total Minutes": 120
-    },
-    {
-        "Year": 2019,
-        "Rating": 4.5,
-        "Title": "quiet place",
-        "Genre": "thriller",
-        "Review": "good",
-        "Total Minutes": 120
-    },
-    {
-        "Year": 2017,
-        "Rating": 5,
-        "Title": "get out",
-        "Genre": "thriller",
-        "Review": "good",
-        "Total Minutes": 200
-    }
-]}
+{"movies": [{
+    "Year": 1,
+    "Rating": 1,
+    "Title": "ewohf",
+    "Genre": "2",
+    "Review": "fwe",
+    "Total Minutes": 1
+}]}

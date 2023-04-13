@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Movie;
 import model.MovieList;
 import persistence.JsonReader;
@@ -436,5 +438,18 @@ public class MovieTrackerGUI {
         frame.setTitle("Movie Tracker App");
         frame.setLayout(new BorderLayout());
         frame.setVisible(true);
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                printLog();
+            }
+        });
+    }
+
+    //EFFECTS: prints logged events to console
+    public void printLog() {
+        for (Event next : EventLog.getInstance()) {
+            System.out.println(next.toString());
+        }
     }
 }
