@@ -16,7 +16,6 @@ public class MovieList implements Writable {
 
     //EFFECTS: constructs a movie list as an empty list
     public MovieList() {
-        //this.name = name;
         this.movies = new ArrayList<>();
     }
 
