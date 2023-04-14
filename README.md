@@ -50,6 +50,25 @@ Got total minutes watched so far
 Thu Apr 13 12:58:37 PDT 2023
 Got average rating so far
 
+## Phase 4: Task 3
+
+With more time I would reduce the duplication in my code for the MovieTrackerGUI class. There is a lot of duplication
+for the titleTextField(), yearTextField(), ratingTextField(), reviewTextField(), minutesTextField(), and 
+genreTextField() methods. I would make a separate method for the dimension of the text field methods since they all use
+the same dimensions. This way if I want to change the dimension I would just need to change the dimension method rather 
+going through and changing all the text field methods, which can easily result in bugs being added to the code. There 
+is also lots of duplication that could be reduced in the addMovieButton(), viewMoviesButton(), 
+highestRatedTitleButton(), mostWatchedGenreButton(), averageRatingButton(), totalMinutesButton(), saveButton(), 
+and loadButton() methods. 
+We can reduce the duplicity by making a separate method that takes all the code that is identical. Since we want all
+the buttons to look the same on the GUI, making a separate method would allow us to change the button's size, colour, or
+other attributes in that method rather than changing multiple methods, which can add bugs to the code. 
+We can also increase cohesion in the MovieTrackerGUI class by making a separate class for the buttons and the text 
+fields and have these classes as fields in the MoveTracker GUI class. This would increase cohesion as the button class 
+will now handle all the button functions, the text field class will handle the textfield functions and MovieTrackerGUI 
+class will handle putting the GUI together, that way each class now has one responsibility.
+
+
 **References**
 - ui package inspired by TellerApp 
 - persistence package and tests inspired by JsonSerializationDemo

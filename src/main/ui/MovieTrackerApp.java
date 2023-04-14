@@ -55,7 +55,6 @@ public class MovieTrackerApp {
 
         System.out.println("Enter movie title: ");
         movie.setTitle(input.nextLine());
-//        String title = movie.getTitle();
 
         System.out.println("Enter movie year: ");
         movie.setYear(input.nextInt());
